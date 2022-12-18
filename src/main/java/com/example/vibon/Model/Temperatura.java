@@ -14,10 +14,10 @@ public class Temperatura {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
 
-    private float temp;
+    private double temp;
 
 
-    public Temperatura(float temp){
+    public Temperatura(double temp){
         setCreationDateTime();
         this.temp = temp;
     }
