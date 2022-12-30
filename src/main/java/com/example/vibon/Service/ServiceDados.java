@@ -1,6 +1,7 @@
 package com.example.vibon.Service;
 
 import com.example.vibon.Model.*;
+import com.example.vibon.Repository.CalibrationRepo;
 import com.example.vibon.Repository.HeatIndexRepo;
 import com.example.vibon.Repository.HumRepo;
 import com.example.vibon.Repository.TemperaturaRepo;
@@ -15,6 +16,9 @@ public class ServiceDados {
     HumRepo repoHum;
     @Autowired
     HeatIndexRepo repoHeatIndex;
+
+    @Autowired
+    CalibrationRepo repoCalibration;
     @Autowired
     private RequestService service;
     public Temperatura getTemperatura() {
@@ -40,5 +44,12 @@ public class ServiceDados {
         HeatIndex heatIndex= new HeatIndex(heatIndexDTO.getHeatIndex());
         repoHeatIndex.save(heatIndex);
         return heatIndex;
+    }
+
+    public Calibration getCalibration(int n, int mm) {
+        CalibrationDTO calibrationDTO=service.retriveCalibrationFromApi(n,mm);
+        Calibration calibration= new Calibration(mm,calibrationDTO.getValue_ms());
+        repoCalibration.save(calibration);
+        return calibration;
     }
 }

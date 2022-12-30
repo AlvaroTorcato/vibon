@@ -1,5 +1,6 @@
 package com.example.vibon.Controller;
 
+import com.example.vibon.Model.Calibration;
 import com.example.vibon.Model.HeatIndex;
 import com.example.vibon.Model.Hum;
 import com.example.vibon.Model.Temperatura;
@@ -31,5 +32,10 @@ public class ControllerDados {
     @GetMapping(value = "/temp")
     public HeatIndex getHeatIndex(){
         return serviceDados.getHeatIndex();
+    }
+    @Operation(summary = "Calibration")
+    @GetMapping(value = "/calibration")
+    public Calibration getCalibration(@RequestParam int n, @RequestParam int mm){
+        return serviceDados.getCalibration(n,mm);
     }
 }

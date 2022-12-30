@@ -73,4 +73,20 @@ public class RequestService {
         }
         return heatIndexDTO;
     }
+
+    public CalibrationDTO retriveCalibrationFromApi(int n, int mm) {
+        String baseUrl = baseURL+"/calibration?dist=" + mm +"&n=" + n;
+        CalibrationDTO calibrationDTO = null;
+        try {
+            InputStream responseStream = openConn(baseUrl).getInputStream();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            CalibrationAPOD calibrationAPOD = mapper.readValue(responseStream, CalibrationAPOD.class);
+            calibrationDTO = new CalibrationDTO(calibrationAPOD);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return calibrationDTO;
+    }
 }
