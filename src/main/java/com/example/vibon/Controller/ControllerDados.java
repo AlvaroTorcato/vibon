@@ -1,5 +1,7 @@
 package com.example.vibon.Controller;
 
+import com.example.vibon.Model.HeatIndex;
+import com.example.vibon.Model.Hum;
 import com.example.vibon.Model.Temperatura;
 import com.example.vibon.Service.ServiceDados;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,5 +21,15 @@ public class ControllerDados {
     @GetMapping(value = "/temp")
     public Temperatura getTemperatura(){
         return serviceDados.getTemperatura();
+    }
+    @Operation(summary = "Saber a humidade")
+    @GetMapping(value = "/hum")
+    public Hum getHum(){
+        return serviceDados.getHum();
+    }
+    @Operation(summary = "Saber a heat index")
+    @GetMapping(value = "/temp")
+    public HeatIndex getHeatIndex(){
+        return serviceDados.getHeatIndex();
     }
 }

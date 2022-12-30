@@ -1,8 +1,7 @@
 package com.example.vibon.Service;
 
 
-import com.example.vibon.Model.TempAPOD;
-import com.example.vibon.Model.TempDTO;
+import com.example.vibon.Model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -43,4 +42,35 @@ public class RequestService {
         return tempDTO;
     }
 
+    public HumDTO retriveHumFromApi() {
+        String baseUrl = baseURL+"/humidity/";
+        HumDTO humDTO = null;
+        try {
+            InputStream responseStream = openConn(baseUrl).getInputStream();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            HumAPOD humAPOD = mapper.readValue(responseStream, HumAPOD.class);
+            humDTO = new HumDTO(humAPOD);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return humDTO;
+    }
+
+    public HeatIndexDTO retriveHeatIndexFromApi() {
+        String baseUrl = baseURL+"/heatIndex/";
+        HeatIndexDTO heatIndexDTO = null;
+        try {
+            InputStream responseStream = openConn(baseUrl).getInputStream();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            HeatIndexAPOD heatIndexAPOD = mapper.readValue(responseStream, HeatIndexAPOD.class);
+            heatIndexDTO = new HeatIndexDTO(heatIndexAPOD);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return heatIndexDTO;
+    }
 }
