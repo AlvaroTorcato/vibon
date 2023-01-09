@@ -29,7 +29,7 @@ public class ControllerDados {
         return serviceDados.getHum();
     }
     @Operation(summary = "Saber a heat index")
-    @GetMapping(value = "/temp")
+    @GetMapping(value = "/heat")
     public HeatIndex getHeatIndex(){
         return serviceDados.getHeatIndex();
     }
